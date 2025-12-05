@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Basic Lorem Ipsum Page</title>
+  <style>
+    :root { --max-w: 900px; --accent: #0b5cff; }
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; line-height: 1.6; margin: 0; background:#f7f9fc; color:#111; }
+    .container { max-width: var(--max-w); margin: 48px auto; background: #fff; padding: 32px; border-radius: 12px; box-shadow: 0 6px 24px rgba(12,24,48,0.06); }
+    header h1 { margin: 0 0 8px 0; font-size: 2rem; }
+    header p { margin: 0 0 20px 0; color: #475569; }
+    article p { margin-bottom: 16px; }
+    .lead { font-size: 1.125rem; color: #0f1724; }
+    footer { margin-top: 28px; color:#64748b; font-size:0.9rem; }
+    .meta { font-size:0.9rem; color:#94a3b8; }
+    @media (max-width:600px){ .container{ margin:20px; padding:20px; } header h1{ font-size:1.5rem; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Sample Lorem Ipsum</h1>
+      <p class="meta">A tiny demo page to show a simple HTML layout with placeholder content.</p>
+    </header>
+
+    <main>
+      <article>
+        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.</p>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.</p>
+
+        <p>Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim.</p>
+
+        <p>Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
+
+        <h2>Section heading</h2>
+        <p>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.</p>
+
+        <ul>
+          <li>Lorem ipsum dolor sit amet</li>
+          <li>Consectetur adipiscing elit</li>
+          <li>Integer nec odio</li>
+        </ul>
+
+        <p>Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus.</p>
+      </article>
+    </main>
+
+    <footer>
+      <p>Made for testing — &copy; <span id="year"></span></p>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
