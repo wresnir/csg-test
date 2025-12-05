@@ -5,6 +5,8 @@ import dev.wresni.csg.utils.ObjectUtil;
 import dev.wresni.csg.utils.StringUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jsoup.Jsoup;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -18,25 +20,27 @@ import java.util.Objects;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class FileReaderTxt implements FileReader {
-    public static final String EXT = "txt";
+public class FileReaderHtml implements FileReader {
+    public static final String EXT = "html";
 
     @Override
     public void readFile(Path filepath, Collection<Rule> rules) {
         if (!isFilePathValid(filepath)) return;
 
-        try (BufferedReader reader = Files.newBufferedReader(filepath)) {
-            log.debug("[READING_FILE] file {} start being read", filepath.getFileName());
-            reader.lines().forEach(line -> readFile(line, rules));
-            log.debug("[READING_FILE] file {} has been read", filepath.getFileName());
-        } catch (IOException e) {
-            log.error("[READING_FILE] file {} error while reading", filepath.getFileName(), e);
+        try {
+            String words = Jsoup.parse(Files.readString(filepath)).text();
+            log.debug("[READING_FILE] html file {}", words);
+            log.debug("[READING_FILE] html file {} start being read", filepath.getFileName());
+            readFile(words, rules);
+            log.debug("[READING_FILE] html file {} has been read", filepath.getFileName());
+        } catch (Exception e) {
+            log.error("[READING_FILE] html file {} error while reading", filepath.getFileName(), e);
         }
     }
 
     private boolean isFilePathValid(Path filepath) {
-        return ObjectUtil.validate(filepath, Objects::nonNull, log, "[READING_FILE] file is null") &&
-                ObjectUtil.validate(filepath, Files::exists, log, "[READING_FILE] file {} is not exists", filepath.getFileName());
+        return ObjectUtil.validate(filepath, Objects::nonNull, log, "[READING_FILE] html file is null") &&
+                ObjectUtil.validate(filepath, Files::exists, log, "[READING_FILE] html file {} is not exists", filepath.getFileName());
     }
 
     private void readFile(String line, Collection<Rule> rules) {
